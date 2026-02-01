@@ -19,10 +19,33 @@ st.set_page_config(
 )
 
 # -----------------------------
+# Custom CSS (Navigation Size)
+# -----------------------------
+st.markdown("""
+<style>
+/* Sidebar title */
+section[data-testid="stSidebar"] h1 {
+    font-size: 26px;
+}
+
+/* Sidebar radio labels */
+section[data-testid="stSidebar"] label {
+    font-size: 18px !important;
+}
+
+/* Sidebar info text */
+section[data-testid="stSidebar"] p {
+    font-size: 15px;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# -----------------------------
 # Sidebar
 # -----------------------------
 st.sidebar.title("🩺 Diagnostic Assistant")
 st.sidebar.markdown("### Navigation")
+
 page = st.sidebar.radio(
     "",
     ["🏠 Home", "🧪 Prediction", "ℹ️ About Model"]
@@ -68,7 +91,6 @@ elif page == "🧪 Prediction":
 
     st.markdown("---")
 
-    # Input Sections
     st.markdown("### 📋 Mean Tumor Characteristics")
 
     col1, col2, col3 = st.columns(3)
@@ -94,7 +116,7 @@ elif page == "🧪 Prediction":
 
     st.markdown("---")
 
-    # Remaining features (fixed mean values)
+    # Remaining features (fixed average values)
     remaining_features = [
         0.4, 1.2, 2.5, 40.0, 0.006,
         0.03, 0.04, 0.01, 0.02, 0.004,
@@ -102,7 +124,6 @@ elif page == "🧪 Prediction":
         0.30, 0.35, 0.15, 0.30, 0.08
     ]
 
-    # Predict Button
     if st.button("🔍 Run Diagnostic Prediction", use_container_width=True):
         patient_data = np.array([[
             radius_mean, texture_mean, perimeter_mean,
@@ -119,18 +140,11 @@ elif page == "🧪 Prediction":
 
         if probability >= 0.5:
             st.error("### 🔴 Malignant Tumor Detected")
-            st.metric(
-                label="Malignancy Probability",
-                value=f"{probability*100:.2f}%"
-            )
+            st.metric("Malignancy Probability", f"{probability*100:.2f}%")
         else:
             st.success("### 🟢 Benign Tumor Detected")
-            st.metric(
-                label="Benign Confidence",
-                value=f"{(1-probability)*100:.2f}%"
-            )
+            st.metric("Benign Confidence", f"{(1-probability)*100:.2f}%")
 
-        st.markdown("---")
         st.warning(
             "⚠️ This result is **AI-assisted** and should be "
             "confirmed with clinical tests and expert evaluation."
@@ -144,30 +158,24 @@ else:
 
     st.markdown("""
     ### 🧠 Model Details
-    - Type: Artificial Neural Network (ANN)
-    - Layers: Input → Hidden Layers → Output
-    - Activation: ReLU, Sigmoid
-    - Loss Function: Binary Cross-Entropy
+    - Artificial Neural Network (ANN)
+    - ReLU & Sigmoid activations
+    - Binary Cross-Entropy loss
+    - Adam optimizer
 
     ### 📊 Dataset
     - Breast Cancer Wisconsin (Diagnostic)
-    - 30 numerical clinical features
-    - Binary classification (Benign / Malignant)
+    - 30 clinical features
+    - Binary classification
 
     ### 🔐 Reliability
-    - Scaled features
+    - Feature scaling
     - Tested on unseen data
-    - High generalization performance
-
-    ### 👨‍💻 Use Case
-    - Clinical decision support
-    - Educational & demonstration purposes
+    - High generalization
     """)
-
-    st.success("This system follows real-world ML deployment practices.")
 
 # -----------------------------
 # Footer
 # -----------------------------
 st.markdown("---")
-st.caption("@ Tejas Nikam | Built with TensorFlow & Streamlit")
+st.caption("© ANN Diagnostic System | Built with TensorFlow & Streamlit")
