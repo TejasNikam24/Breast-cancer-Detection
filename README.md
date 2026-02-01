@@ -9,7 +9,7 @@ The application features a doctor-friendly Streamlit UI designed for clarity, si
 Early detection of breast cancer is critical for effective treatment.
 This project uses a supervised deep learning approach to classify tumors based on clinical measurements derived from biopsy images.
 
-**The system:**
+**system:**
 
 Takes patient tumor measurements as input
 
