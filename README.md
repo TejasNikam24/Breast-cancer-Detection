@@ -11,37 +11,54 @@ This project uses a supervised deep learning approach to classify tumors based o
 **system:**
 
 Takes patient tumor measurements as input
+
 Applies the same preprocessing used during training
+
 Uses a trained ANN model to predict diagnosis
+
 Displays results in a clear, medical-friendly UI
 
 
 **🛠️ Tech Stack**
 
 Python
+
 TensorFlow / Keras
+
 Scikit-learn
+
 Pandas & NumPy
+
 Streamlit
 
 
 **🚀 Features**
 
 🧠 ANN-based binary classification (Benign / Malignant)
+
 🩺 Doctor-friendly, clean Streamlit interface
+
 📊 Probability-based prediction output
+
 🔄 Proper preprocessing with saved scaler
+
 💾 Model & scaler persistence (production-ready)
+
 ⚠️ Medical disclaimer for ethical usage
 
 
 
 **📊 Dataset Information**
 
+
 Source: Kaggle – Breast Cancer Wisconsin (Diagnostic) Dataset
+
 Type: Binary Classification
+
 Samples: 569
+
 Features: 30 numerical clinical features
+
 Target Variable:
                 0 → Benign
                 1 → Malignant
@@ -64,12 +81,19 @@ Evaluation Metric: Accuracy
 **🧪 Machine Learning Pipeline**
 
 Data loading and exploration
+
 Label encoding of target variable
+
 Feature scaling using StandardScaler
+
 Train-test split
+
 ANN model training
+
 Model evaluation
+
 Saving trained model & scaler
+
 Deployment using Streamlit
 
 
